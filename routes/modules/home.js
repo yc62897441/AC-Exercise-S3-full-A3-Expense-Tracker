@@ -34,7 +34,9 @@ router.get('/', (req, res) => {
             totalAmount += records[i].amount
           }
           console.log('5', totalAmount)
-          res.render('index', { records: records, totalAmount: totalAmount, name: name })
+          const qq = []
+          records.forEach(record => qq.push(record.categoryIcon))
+          res.render('index', { records: records, totalAmount: totalAmount, name: name, qq: qq })
         })
         .catch(error => console.log(error))
     })
