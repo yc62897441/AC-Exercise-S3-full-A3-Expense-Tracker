@@ -6,7 +6,15 @@ const User = require('../../models/User')
 
 // 登入頁
 router.get('/login', (req, res) => {
-  res.render('login')
+  // 如果有錯誤訊息，或是成功登出訊息，或是使用者輸入之登入email，傳給 views，並清空 session 內存的資訊
+  const errors = req.session.errors
+  req.session.errors = []
+  const logoutMsg = req.session.logoutMsg
+  req.session.logoutMsg = ''
+  const email = req.session.email
+  req.session.email = ''
+
+  res.render('login', { errors: errors, logoutMsg: logoutMsg, email: email })
 })
 
 // 處理登入資訊
@@ -61,6 +69,8 @@ router.post('/register', (req, res) => {
 router.get('/logout', (req, res) => {
   delete req.session.email
   delete req.session.passport
+
+  req.session.logoutMsg = '成功登出'
 
   req.logout()
   req.flash('seccess_msg', '成功登出')

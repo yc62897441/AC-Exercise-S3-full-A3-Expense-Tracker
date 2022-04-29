@@ -12,18 +12,26 @@ module.exports = app => {
 
   // 設定本地登入策略
   passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
-    // req.session.email = req.body.email
+    const errors = []
+    req.session.email = req.body.email
 
     User.findOne({ email })
       .then(user => {
         if (!user) {
-          req.flash('warning_msg', '此 email 尚未註冊過')
+          errors.push('此 email 尚未註冊過')
+          req.session.errors = errors
+
+          // 另一種做法，用 connect-flash，並使用 handlebars {{> message}} 取得相關訊息
+          // req.flash('warning_msg', '此 email 尚未註冊過')
           return done(null, false, { message: 'That email is not registered!' })
         }
         return bcrypt.compare(password, user.password)
           .then(isMatch => {
             if (!isMatch) {
-              req.flash('warning_msg', '密碼錯誤')
+              errors.push('密碼錯誤')
+              req.session.errors = errors
+
+              // req.flash('warning_msg', '密碼錯誤')
               return done(null, false, { message: 'Email or Password incorrect.' })
             }
             return done(null, user)
