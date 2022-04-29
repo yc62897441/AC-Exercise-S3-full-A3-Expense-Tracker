@@ -19,10 +19,6 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 
 // 載入自定義套件
-const db = require('./config/mongoose')
-// const Record = require('./models/Record')
-const handlebarsSelfDefined = require('./config/handlebars')
-// const { redirect } = require('express/lib/response')
 const routes = require('./routes/index')
 
 // use 路由前處理

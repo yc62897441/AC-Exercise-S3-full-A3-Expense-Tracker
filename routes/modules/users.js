@@ -60,7 +60,7 @@ router.post('/register', (req, res) => {
             .then(user => {
               return res.render('login')
             })
-            .catch(error => comnsole.log(error))
+            .catch(error => console.log(error))
         })
     })
 })
