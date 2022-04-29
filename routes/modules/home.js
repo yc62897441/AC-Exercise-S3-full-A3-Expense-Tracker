@@ -21,15 +21,16 @@ router.get('/', (req, res) => {
             const icon = categories.find(category => category.name === records[i].category).icon
             records[i].categoryIcon = icon
           }
-          return records
+          const returnValues = { categories: categories, records: records }
+          return returnValues
         })
-        .then(records => {
+        .then(returnValues => {
           // 計算總金額
           let totalAmount = 0
-          for (let i = 0; i < records.length; i++) {
-            totalAmount += records[i].amount
+          for (let i = 0; i < returnValues.records.length; i++) {
+            totalAmount += returnValues.records[i].amount
           }
-          res.render('index', { records: records, totalAmount: totalAmount, name: name})
+          res.render('index', { records: returnValues.records, categories: returnValues.categories, totalAmount: totalAmount, name: name })
         })
         .catch(error => console.log(error))
     })
@@ -63,17 +64,17 @@ router.post('/filter', (req, res) => {
           } else {
             filterRecord = records.filter(item => item.category === filterCategory)
           }
-
-          return filterRecord
+          const returnValues = { categories: categories, records: filterRecord }
+          return returnValues
         })
-        .then(filterRecord => {
+        .then(returnValues => {
           // 計算總金額
           let totalAmount = 0
-          for (let i = 0; i < filterRecord.length; i++) {
-            totalAmount += filterRecord[i].amount
+          for (let i = 0; i < returnValues.records.length; i++) {
+            totalAmount += returnValues.records[i].amount
           }
 
-          res.render('index', { records: filterRecord, totalAmount: totalAmount, name: name })
+          res.render('index', { records: returnValues.records, categories: returnValues.categories, totalAmount: totalAmount, name: name })
         })
         .catch(error => console.log(error))
     })

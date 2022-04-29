@@ -18,11 +18,14 @@
         <select class="form-select" aria-label="Default select example" name="category" style="width: 80%">
           <option value="">全部類別</option>
           {{!-- #compareValues 為自定義的 handlebars helper(檔案在/config/handlebars.js)，handlebars !== express-handlebars --}}
-          <option {{#compareValues "家居物業" filterCategory}}{{/compareValues}} value="家居物業">家居物業</option>
+          {{#each categories }}
+          <option {{#compareValues "{{this.name}}" filterCategory}}{{/compareValues}} value="{{this.name}}">{{this.name}}</option>
+          {{/each}}
+          {{!-- <option {{#compareValues "家居物業" filterCategory}}{{/compareValues}} value="家居物業">家居物業</option>
           <option {{#compareValues "交通出行" filterCategory}}{{/compareValues}} value="交通出行">交通出行</option>
           <option {{#compareValues "休閒娛樂" filterCategory}}{{/compareValues}} value="休閒娛樂">休閒娛樂</option>
           <option {{#compareValues "餐飲食品" filterCategory}}{{/compareValues}} value="餐飲食品">餐飲食品</option>
-          <option {{#compareValues "其他" filterCategory}}{{/compareValues}} value="其他">其他</option>
+          <option {{#compareValues "其他" filterCategory}}{{/compareValues}} value="其他">其他</option> --}}
         </select>
 
         <button class="btn btn-primary mt-3" type="submit">搜尋</button>
