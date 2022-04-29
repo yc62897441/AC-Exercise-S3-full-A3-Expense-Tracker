@@ -1,13 +1,13 @@
 # Project AC-Exercise-S3-A3-expense-tracker
 Alpha camp Semester3 A3 expense-tracker(秘密手帳)
 
-![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/master/images/sample001.jpg?raw=true)
+![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/main/images/sample001.jpg?raw=true)
 
-![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/master/images/sample002.jpg?raw=true)
+![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/main/images/sample002.jpg?raw=true)
 
-![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/master/images/sample003.jpg?raw=true)
+![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/main/images/sample003.jpg?raw=true)
 
-![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/master/images/sample004.jpg?raw=true)
+![alt text](https://github.com/yc62897441/AC-Exercise-S3-full-A3-Expense-Tracker/blob/main/images/sample004.jpg?raw=true)
 
 ## Environment & Prerequisites
 
