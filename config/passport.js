@@ -64,7 +64,7 @@ module.exports = app => {
               .catch(error => done(error, false))
           })
       })
-      .catch(error => done(error, fasle))
+      .catch(error => done(error, false))
   }))
 
   // 設定序列化與反序列化
