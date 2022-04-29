@@ -1,0 +1,40 @@
+<nav class="navbar navbar-light bg-light pt-3 pb-3">
+  <div class="d-flex flex-row justify-content-between w-100 ms-5 me-5">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bolder" href="/">{{#if name}}{{name}}の{{/if}}秘密手帳</a>
+    </div>
+  </div>
+</nav>
+
+<div class="row mt-5">
+  <div class="col-6 m-auto">
+    <div class="card card-body">
+      <h2 class="text-center mt-3">Register</h2>
+      {{> message}}
+      <form action="/users/register" method="post" class="d-flex flex-column mt-2 ms-5 me-5">
+        <div class="mt-4">
+          <label for="name" class="form-label" style="font-size: 1.5em;">Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{#if name}}{{name}}{{/if}}" required>
+        </div>
+        <div class="mt-4">
+          <label for="email" class="form-label" style="font-size: 1.5em;">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{#if email}}{{email}}{{/if}}" required>
+        </div>
+        <div class="mt-4">
+          <label for="password" class="form-label" style="font-size: 1.5em;">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
+            required>
+        </div>
+        <div class="mt-4">
+          <label for="confirmPassword" class="form-label" style="font-size: 1.5em;">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+            placeholder="Enter confirm password" required>
+        </div>
+        <button type="submit" class="btn btn-primary align-self-center mt-5 w-50">Register</button>
+        <div class="align-self-center mt-3">
+          <p>Have an Account? <a href="/users/login">Login Here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

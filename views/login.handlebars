@@ -1,0 +1,33 @@
+<nav class="navbar navbar-light bg-light pt-3 pb-3">
+  <div class="d-flex flex-row justify-content-between w-100 ms-5 me-5">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bolder" href="/">{{#if name}}{{name}}の{{/if}}秘密手帳</a>
+    </div>
+  </div>
+</nav>
+
+<div class="row mt-5">
+  <div class="col-6 m-auto">
+    <div class="card card-body">
+      <h2 class="text-center mt-3">Login</h2>
+      {{> message}}
+      <form action="/users/login" method="post" class="d-flex flex-column mt-2 ms-5 me-5">
+        <div class="mt-4">
+          <label for="email" class="form-label" style="font-size: 1.5em;">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+            value="{{#if email}}{{email}}{{/if}}" required>
+        </div>
+        <div class="mt-4">
+          <label for="password" class="form-label" style="font-size: 1.5em;">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
+            required>
+        </div>
+        <button type="submit" class="btn btn-primary align-self-center mt-5 w-50">Login</button>
+        <a href="/auth/facebook" class="btn btn-secondary align-self-center mt-3 w-50">Login with Facebook</a>
+        <div class="align-self-center mt-3">
+          <p>No Account? <a href="/users/register">Register Here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<nav class="navbar navbar-light bg-light pt-3 pb-3">
+  <div class="d-flex flex-row justify-content-between w-100 ms-5 me-5">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bolder" href="/">{{#if name}}{{name}}の{{/if}}秘密手帳</a>
+    </div>
+    <div>
+      <a href="/users/logout"><button type="button" class="btn btn-danger">Logout</button></a>
+    </div>
+  </div>
+</nav>
+
+<main class="d-flex flex-column align-items-center">
+
+  <div id="containerFilter" class="d-flex justify-content-center mt-5 mb-5" style="min-width: 600px">
+    <form action="/filter" method="post" style="width: 80%">
+      <div class="d-flex flex-column align-items-center mb-3">
+        <label for="category" class="form-label fw-bold" style="font-size: 1.8em">種類</label>
+        <select class="form-select" aria-label="Default select example" name="category" style="width: 80%">
+          <option value="">全部類別</option>
+          {{!-- #compareValues 為自定義的 handlebars helper(檔案在/config/handlebars.js)，handlebars !== express-handlebars --}}
+          <option {{#compareValues "家居物業" filterCategory}}{{/compareValues}} value="家居物業">家居物業</option>
+          <option {{#compareValues "交通出行" filterCategory}}{{/compareValues}} value="交通出行">交通出行</option>
+          <option {{#compareValues "休閒娛樂" filterCategory}}{{/compareValues}} value="休閒娛樂">休閒娛樂</option>
+          <option {{#compareValues "餐飲食品" filterCategory}}{{/compareValues}} value="餐飲食品">餐飲食品</option>
+          <option {{#compareValues "其他" filterCategory}}{{/compareValues}} value="其他">其他</option>
+        </select>
+
+        <button class="btn btn-primary mt-3" type="submit">搜尋</button>
+
+        <div class="fw-bold mt-3" style="font-size: 2em">
+          <div>總金額: {{totalAmount}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="mb-5">
+    <a href="/record">
+      <button class="btn btn-success">新增支出</button>
+    </a>
+  </div>
+
+  <div id="containerList" class="mb-5" style="min-width: 800px">
+    <ul class="list-group">
+      {{#each records}}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="ms-2 me-2 d-flex justify-content-between flex-row align-items-center" style="width: 75%">
+          <div class="fw-bold" style="font-size: 1.5em">
+            <i class="fa-solid {{this.categoryIcon}}" style="font-size: 1.2em"> {{this.name}}</i>
+          </div>
+          <div class="ms-1 d-flex flex-row">
+            <div class="me-2 d-flex justify-content-end" style="font-size: 1.1em; width:120px">
+              {{this.date}}</div>
+            <div class="ms-2" style=" display: flex; align-items: center">
+              <i class=" fa-solid fa-dollar-sign"
+                style="width:80px; display: flex; justify-content: flex-end">{{this.amount}}</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row">
+          {{!-- <a href="/edit/{{this._id}}">
+            <button type="button" class="btn btn-warning me-1">編輯</button>
+          </a> --}}
+          <form action="/record/{{this._id}}?_method=get" method="post">
+            <button type="summit" class="btn btn-warning me-1">編輯</button>
+          </form>
+
+          <form action="/record/{{this._id}}?_method=delete" method="post">
+            <button type="summit" class="btn btn-danger ms-1 me-1">刪除</button>
+          </form>
+          {{!-- <a href="/delete/{{this._id}}">
+            <button type="button" class="btn btn-danger ms-1 me-1">刪除</button>
+          </a> --}}
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</main>

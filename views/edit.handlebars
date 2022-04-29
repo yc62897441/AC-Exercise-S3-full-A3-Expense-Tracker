@@ -1,0 +1,49 @@
+<nav class="navbar navbar-light bg-light pt-3 pb-3">
+  <div class="d-flex flex-row justify-content-between w-100 ms-5 me-5">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bolder" href="/">{{#if name}}{{name}}の{{/if}}秘密手帳</a>
+    </div>
+    <div>
+      <a href="/users/logout"><button type="button" class="btn btn-danger">Logout</button></a>
+    </div>
+  </div>
+</nav>
+
+<main class="d-flex justify-content-center">
+  <div class="containerForm mt-5">
+    <form action="/record/{{record._id}}?_method=put" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">名稱</label>
+        <input type="text" class="form-control" id="text" name="name" value="{{record.name}}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">種類</label>
+        <select class="form-select" name="category" value="A" required>
+          {{!-- #compareValues 為自定義的 handlebars helper(檔案在/config/handlebars.js)，handlebars !== express-handlebars --}}
+          <option {{#compareValues "家居物業" record.category}}{{/compareValues}} value="家居物業">家居物業</option>
+          <option {{#compareValues "交通出行" record.category}}{{/compareValues}} value="交通出行">交通出行</option>
+          <option {{#compareValues "休閒娛樂" record.category}}{{/compareValues}} value="休閒娛樂">休閒娛樂</option>
+          <option {{#compareValues "餐飲食品" record.category}}{{/compareValues}} value="餐飲食品">餐飲食品</option>
+          <option {{#compareValues "其他" record.category}}{{/compareValues}} value="其他">其他</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="Date" class="form-label">日期</label>
+        <input type="date" class="form-control" id="Date" name="date" value="{{record.date}}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="amount" class="form-label">金額</label>
+        <input type="number" class="form-control" id="amount" name="amount" min="0" step="1" value="{{record.amount}}"
+          required>
+      </div>
+
+      <button type="submit" class="btn btn-warning me-1">編輯</button>
+      <a href="/">
+        <button type="button" class="btn btn-secondary ms-1 me-1">返回</button>
+      </a>
+    </form>
+  </div>
+</main>
