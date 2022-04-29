@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
   })
 
   newRecord.save()
-    .then(res.redirect('../'))
+    .then(res.redirect('/'))
     .catch(error => console.log(error))
 })
 
@@ -51,7 +51,7 @@ router.put('/:id', (req, res) => {
       record.date = reqBody.date
       record.amount = reqBody.amount
       record.save()
-      res.redirect('../')
+      res.redirect('/')
     })
     .catch(error => console.log(error))
 })
@@ -62,7 +62,7 @@ router.delete('/:id', (req, res) => {
   Record.findById(id)
     .then(record => {
       record.remove()
-      res.redirect('../')
+      res.redirect('/')
     })
     .catch(error => console.log(error))
 })
