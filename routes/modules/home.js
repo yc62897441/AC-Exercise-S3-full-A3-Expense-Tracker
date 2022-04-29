@@ -13,22 +13,27 @@ router.get('/', (req, res) => {
   Record.find({ userId })
     .lean()
     .then(records => {
+      console.log('1', records)
       Category.find()
         .lean()
         .then(categories => {
+          console.log('2', categories)
           // 將各類別之 icon 存入到 record 中
           for (let i = 0; i < records.length; i++) {
             const icon = categories.find(category => category.name === records[i].category).icon
             records[i].categoryIcon = icon
           }
+          console.log('3', records)
           return records
         })
         .then(records => {
+          console.log('4', records)
           // 計算總金額
           let totalAmount = 0
           for (let i = 0; i < records.length; i++) {
             totalAmount += records[i].amount
           }
+          console.log('5', totalAmount)
           res.render('index', { records: records, totalAmount: totalAmount, name: name })
         })
         .catch(error => console.log(error))
