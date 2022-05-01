@@ -13,6 +13,9 @@ if (process.env.NODE_ENV !== 'production') {
 const app = express()
 const PORT = process.env.PORT
 
+require('./config/mongoose')
+require('./config/handlebars')
+
 // 使用 session
 const session = require('express-session')
 // 載入設定檔，要寫在 express-session 以後
